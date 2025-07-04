@@ -78,7 +78,7 @@ function renderResults(results) {
 
     if (results.length > 0) {
         results.forEach(result => {
-            const nombre = result.PDV || result.NOM_PRODUCTOS;
+            const nombre = result.PDV || result.NOM_PRODUCTOS || result.NOMBRE_PDV;
             const claseTipo = result.PDV ? 'pdv' : 'producto';
 
             output += `
