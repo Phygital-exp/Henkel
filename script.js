@@ -47,7 +47,7 @@ function updatePlaceholder() {
 function initializeFuse(type) {
     const options = {
         keys: type === 'pdv'
-            ? ['SAP', 'REGION', 'CIUDAD', 'CADENA', 'PDV']
+            ? ['SAP', 'REGIONAL', 'CIUDAD', 'CADENA', 'NOMBRE_PDV']
             : ['SAP', 'SUBCATEGORIA', 'REFERENCIA', 'NOM_PRODUCTOS'],
         threshold: 0.3,
     };
@@ -78,19 +78,19 @@ function renderResults(results) {
 
     if (results.length > 0) {
         results.forEach(result => {
-            const nombre = result.PDV || result.NOM_PRODUCTOS || result.NOMBRE_PDV;
-            const claseTipo = result.PDV ? 'pdv' : 'producto';
+            const nombre = result.NOMBRE_PDV;
+            const claseTipo = result.NOMBRE_PDV ? 'pdv' : 'producto';
 
             output += `
                 <div class="result-item ${claseTipo}" role="region" aria-label="${nombre}">
                     <h3>
-                        <i class="material-icons icon-tipo">${result.PDV ? 'store' : 'inventory_2'}</i>
+                        <i class="material-icons icon-tipo">${result.NOMBRE_PDV ? 'store' : 'inventory_2'}</i>
                         ${nombre}
                     </h3>
                     <div class="tags">
                         ${result.CIUDAD ? `<span class="tag ciudad">${result.CIUDAD}</span>` : ''}
                         ${result.CADENA ? `<span class="tag cadena">${result.CADENA}</span>` : ''}
-                        ${result.REGION ? `<span class="tag region">${result.REGION}</span>` : ''}
+                        ${result.REGIONAL ? `<span class="tag region">${result.REGIONAL}</span>` : ''}
                         ${result.SUBCATEGORIA ? `<span class="tag subcategoria">${result.SUBCATEGORIA}</span>` : ''}
                     </div>
                     <ul>
